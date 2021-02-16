@@ -11,7 +11,11 @@
     [bootcamp-luminus.events]
     [reitit.core :as reitit]
     [reitit.frontend.easy :as rfe]
-    [clojure.string :as string])
+    [clojure.string :as string]
+
+    ;; Not part of template, added for bootcamp
+    [bootcamp-luminus.exercise.users :as users]
+    [stylefy.core :as stylefy])
   (:import goog.History))
 
 (defn nav-link [uri title page]
@@ -34,7 +38,9 @@
                 {:class (when @expanded? :is-active)}
                 [:div.navbar-start
                  [nav-link "#/" "Home" :home]
-                 [nav-link "#/about" "About" :about]]]]))
+                 [nav-link "#/about" "About" :about]
+                 ;; Not part of template, added for bootcamp
+                 [nav-link "#/users" "Users" :users]]]]))
 
 (defn about-page []
   [:section.section>div.container>div.content
@@ -60,7 +66,11 @@
            :view        #'home-page
            :controllers [{:start (fn [_] (rf/dispatch [:page/init-home]))}]}]
      ["/about" {:name :about
-                :view #'about-page}]]))
+                :view #'about-page}]
+
+     ;; Not part of template, added for bootcamp
+     ["/users" {:name :users
+                :view #'users/page}]]))
 
 (defn start-router! []
   (rfe/start!
@@ -77,4 +87,5 @@
 (defn init! []
   (start-router!)
   (ajax/load-interceptors!)
+  (stylefy/init)
   (mount-components))

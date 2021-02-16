@@ -2,8 +2,7 @@
   (:require
     [ajax.core :as ajax]
     [luminus-transit.time :as time]
-    [cognitect.transit :as transit]
-    [re-frame.core :as rf]))
+    [cognitect.transit :as transit]))
 
 (defn local-uri? [{:keys [uri]}]
   (not (re-find #"^\w+?://" uri)))
@@ -28,3 +27,9 @@
          conj
          (ajax/to-interceptor {:name "default headers"
                                :request default-headers})))
+
+(def raw-response-format ajax/raw-response-format)
+(def json-request-format ajax/json-request-format)
+(def json-response-format ajax/json-response-format)
+(def GET ajax/GET)
+(def POST ajax/POST)
