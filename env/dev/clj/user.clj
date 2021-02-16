@@ -1,7 +1,7 @@
 (ns user
   "Userspace functions you can run by default in your local REPL."
   (:require
-   [bootcamp-luminus.config :refer [env]]
+    [bootcamp-luminus.config :refer [env]]
     [clojure.pprint]
     [clojure.spec.alpha :as s]
     [expound.alpha :as expound]
